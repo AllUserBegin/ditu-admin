@@ -7,7 +7,7 @@
       </el-col>
       <el-col :span="4" class="userinfo">
         <el-dropdown trigger="click">
-          <span class="el-dropdown-link userinfo-inner">{{sysUserName}}</span>
+          <span class="el-dropdown-link userinfo-inner">{{UserName}}</span>
           <el-dropdown-menu slot="dropdown">
             <!--<el-dropdown-item>我的消息</el-dropdown-item>
 						<el-dropdown-item>设置</el-dropdown-item>-->
@@ -16,6 +16,7 @@
         </el-dropdown>
       </el-col>
     </el-col>
+<!--
     <el-col :span="24" class="main">
       <aside>
         <el-menu :default-active="$route.path" class="el-menu-vertical-demo" theme="dark" unique-opened router>
@@ -50,6 +51,7 @@
         </div>
       </section>
     </el-col>
+-->
   </el-row>
 </template>
 
@@ -63,14 +65,19 @@ export default {
         return{}
     },    
     methods: {      
-        checklogin(){       
+        checklogin(){ 
             
              if(foo.CheckLogin())
              {
                  console.log("未登录");   
-                this.$router.push("login");
+                 this.$router.push("login");
              }
-        }     
+        },
+        logout()
+        {
+           foo.logout();
+           this.$router.push("login");
+        }   
     },
     mounted()
     {    
@@ -78,7 +85,22 @@ export default {
     },
     created()
     {
+        this.$store.dispatch("getRouterName", this.$route.name);
+    },
+    watch()
+    {
 
+    },
+    computed:
+    {
+        UserId()
+        {
+            return this.$store.state.UserId;
+        },
+        UserName()
+        {
+            return this.$store.state.UserName;
+        }
     }
 
 };
