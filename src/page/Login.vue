@@ -19,7 +19,7 @@
 <script>
 import NProgress from "nprogress";
 import md5 from "js-md5";
-import util from "../common/js/util.js"
+import common from "../common/js/com.js";
 
   export default {
     data() {
@@ -58,12 +58,11 @@ import util from "../common/js/util.js"
                                     Account: this.ruleForm.account,
                                     Passwd: this.ruleForm.Passwd,
                                    };
-                 
-                 util.clearCookie(this.ruleForm.account);
-                 util.clearCookie(this.ruleForm.Passwd);
-                 
+                common.login(loginParams);                 
                 NProgress.done();
-                logining=false;
+                this.logining=false;
+                this.$router.push("/");
+
             }
             else
             {

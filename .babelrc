@@ -1,6 +1,6 @@
 {
   "presets": [
-    //["es2015", { "modules": true }],
+    ///["es2016", { "modules": true }],
     ["env", {
       "modules": false,
       "targets": {
